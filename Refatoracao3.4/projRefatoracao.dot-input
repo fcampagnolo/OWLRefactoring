@@ -1,0 +1,4 @@
+digraph "projRefatoracao" {
+
+"http://www.owl-ontologies.com/Ontology1448126814.owl#Refactoring" [shape=box, label="Refactoring", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+}
