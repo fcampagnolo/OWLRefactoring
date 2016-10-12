@@ -1,0 +1,1084 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.owl-ontologies.com/Ontology1448126814.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xml:base="http://www.owl-ontologies.com/Ontology1448126814.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Obra"/>
+  <owl:Class rdf:ID="Refatoracao"/>
+  <owl:Class rdf:ID="Categoria"/>
+  <owl:Class rdf:ID="Catalogo"/>
+  <owl:Class rdf:ID="Vantagens"/>
+  <owl:Class rdf:ID="Livro">
+    <rdfs:subClassOf rdf:resource="#Obra"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Dominio"/>
+  <owl:Class rdf:ID="Desvantagens"/>
+  <owl:Class rdf:ID="Exemplo"/>
+  <owl:Class rdf:ID="Autor"/>
+  <owl:Class rdf:ID="Artigo">
+    <rdfs:subClassOf rdf:resource="#Obra"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="createBy">
+    <owl:inverseOf rdf:resource="#createBy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:range rdf:resource="#Autor"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasDominio">
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <rdfs:range rdf:resource="#Dominio"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isAutorOf">
+    <rdfs:domain rdf:resource="#Autor"/>
+    <rdfs:range rdf:resource="#Obra"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="useOtherRefactorings">
+    <rdfs:range rdf:resource="#Refatoracao"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasDesvantagens">
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <rdfs:range rdf:resource="#Desvantagens"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasAutor">
+    <rdfs:domain rdf:resource="#Obra"/>
+    <rdfs:range rdf:resource="#Autor"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasRefatoracao">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Categoria"/>
+          <owl:Class rdf:about="#Catalogo"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Refatoracao"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isExemploOf">
+    <rdfs:range rdf:resource="#Refatoracao"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Exemplo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasVantagens">
+    <rdfs:range rdf:resource="#Vantagens"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasReverse">
+    <owl:inverseOf rdf:resource="#hasReverse"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <rdfs:range rdf:resource="#Refatoracao"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="descricao">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Catalogo"/>
+          <owl:Class rdf:about="#Categoria"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="mecanica">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="resumo">
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="antesRefatoracao">
+    <rdfs:domain rdf:resource="#Exemplo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="titulo">
+    <rdfs:domain rdf:resource="#Obra"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="email">
+    <rdfs:domain rdf:resource="#Autor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="nome">
+    <rdfs:domain rdf:resource="#Autor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="depoisRefatoracao">
+    <rdfs:domain rdf:resource="#Exemplo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:SymmetricProperty rdf:ID="hasCatalogo">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Refatoracao"/>
+          <owl:Class rdf:about="#Obra"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Catalogo"/>
+    <owl:inverseOf rdf:resource="#hasCatalogo"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:ID="hasObra">
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <rdfs:range rdf:resource="#Obra"/>
+    <owl:inverseOf rdf:resource="#hasObra"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:ID="hasExemplo">
+    <rdfs:range rdf:resource="#Exemplo"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#hasExemplo"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:ID="hasCategoria">
+    <rdfs:range rdf:resource="#Categoria"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Refatoracao"/>
+    <owl:inverseOf rdf:resource="#hasCategoria"/>
+  </owl:SymmetricProperty>
+  <Categoria rdf:ID="PadroesSimplificacao">
+    <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0"&gt;
+      As refatora&amp;#231;&amp;#245;es desta categoria apresentam diferentes solu&amp;#231;&amp;#245;es para 
+      simplificar m&amp;#233;todos, transi&amp;#231;&amp;#245;es de estados e estruturas em forma de 
+      &amp;#225;rvore.
+    &lt;/p&gt;</descricao>
+    <hasRefatoracao>
+      <Refatoracao rdf:ID="Convert_Functional_Interface_Instance_to_Lambda_Expression">
+        <hasCatalogo>
+          <Catalogo rdf:ID="Catalogo_Expr_Lambda">
+            <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p style="margin-top: 0"&gt;
+      Cat&amp;#225;logo de refatora&amp;#231;&amp;#245;es para o uso de express&amp;#245;es lambdas 
+      voltadas para sistemas orientados a objetos e aspectos
+    &lt;/p&gt;</descricao>
+            <hasRefatoracao>
+              <Refatoracao rdf:ID="Convert_Lambda_Expression_to_Functional_Interface_Instance">
+                <hasDesvantagens>
+                  <Desvantagens rdf:ID="AddLinhasCodigo"/>
+                </hasDesvantagens>
+                <hasDominio>
+                  <Dominio rdf:ID="Lambda">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Expressão Lambda</rdfs:label>
+                  </Dominio>
+                </hasDominio>
+                <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Você utiliza uma expressão lambda para instanciar uma interface funcional, porém o código  está extenso e confuso. Portanto, substitua o uso dessa expressão por uma classe anônima correspondente. </resumo>
+                <createBy>
+                  <Autor rdf:ID="TeixeiraJúnior">
+                    <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Jânio Elias Teixeira Júnior</nome>
+                    <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >janiojunior@gmail.com</email>
+                    <isAutorOf>
+                      <Artigo rdf:ID="CatalogoLambda">
+                        <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >UM CATÁLOGO DE REFATORAÇÕES ENVOLVENDO EXPRESSÕES LAMBDA EM JAVA</titulo>
+                        <hasCatalogo rdf:resource="#Catalogo_Expr_Lambda"/>
+                        <hasAutor rdf:resource="#TeixeiraJúnior"/>
+                      </Artigo>
+                    </isAutorOf>
+                  </Autor>
+                </createBy>
+                <hasExemplo>
+                  <Exemplo rdf:ID="Ex_Convert_Lambda_Expression_to_Functional_Interface_Instance">
+                    <isExemploOf rdf:resource="#Convert_Lambda_Expression_to_Functional_Interface_Instance"/>
+                    <depoisRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >ActionListener al = new ActionListener() {  public void actionPerformed(ActionEvent e) {  System.out.println("Hello!");  }  };</depoisRefatoracao>
+                    <antesRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    ></antesRefatoracao>
+                    <hasExemplo rdf:resource="#Convert_Lambda_Expression_to_Functional_Interface_Instance"/>
+                  </Exemplo>
+                </hasExemplo>
+                <mecanica rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >1. No local da express&amp;#227;o lambda, instancie de forma convencional a 
+    interface funcional requerida. 
+2. D&amp;#234; os mesmos nomes dos argumentos da express&amp;#227;o lambda aos argumentos na 
+    assinatura do m&amp;#233;todo da interface funcional, caso existam. 
+3. Mova o corpo da express&amp;#227;o lambda (localizado ap&amp;#243;s o token -&amp;gt;) para o corpo 
+    do m&amp;#233;todo da interface. 
+4. Apague a express&amp;#227;o lambda. 
+5. Compile o c&amp;#243;digo e teste.</mecanica>
+                <hasReverse rdf:resource="#Convert_Functional_Interface_Instance_to_Lambda_Expression"/>
+                <hasVantagens>
+                  <Vantagens rdf:ID="RmComplexidadeLambda">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Reduzir Complexidade Lambda</rdfs:label>
+                  </Vantagens>
+                </hasVantagens>
+                <hasCatalogo rdf:resource="#Catalogo_Expr_Lambda"/>
+                <hasDesvantagens>
+                  <Desvantagens rdf:ID="Regressao"/>
+                </hasDesvantagens>
+                <hasObra rdf:resource="#CatalogoLambda"/>
+                <hasDominio>
+                  <Dominio rdf:ID="POO">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Programação Orientada a Objetos</rdfs:label>
+                  </Dominio>
+                </hasDominio>
+                <hasDesvantagens>
+                  <Desvantagens rdf:ID="PoraLegibilidade"/>
+                </hasDesvantagens>
+                <hasDominio>
+                  <Dominio rdf:ID="Java">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Java</rdfs:label>
+                  </Dominio>
+                </hasDominio>
+                <hasDesvantagens>
+                  <Desvantagens rdf:ID="PioraManutencao"/>
+                </hasDesvantagens>
+              </Refatoracao>
+            </hasRefatoracao>
+            <hasRefatoracao rdf:resource="#Convert_Functional_Interface_Instance_to_Lambda_Expression"/>
+          </Catalogo>
+        </hasCatalogo>
+        <hasVantagens>
+          <Vantagens rdf:ID="MelhorLegibilidade">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Melhoria na Legibilidade</rdfs:label>
+          </Vantagens>
+        </hasVantagens>
+        <hasReverse rdf:resource="#Convert_Lambda_Expression_to_Functional_Interface_Instance"/>
+        <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Você tem uma instância de interface funcional que é usada ao longo do código fonte de um  projeto.  Portanto, substitua o uso dessa instância por uma expressão lambda.</resumo>
+        <hasVantagens>
+          <Vantagens rdf:ID="MelhoraManutencao">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Melhoria na manutenção</rdfs:label>
+          </Vantagens>
+        </hasVantagens>
+        <mecanica rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >1. Implemente uma instância de uma interface funcional utilizando expressões lambda  (ParameterSpace -&gt; BodySpace).  2. Copie os argumentos do método da instância convencional da interface funcional e posicione-  os antes do token (-&gt;).  3. Copie o código da implementação do método e coloque-o após o token.  4. Substitua a implementação convencional da interface funcional pela expressão lambda.  5. Compile o código e teste.  O exemplo a seguir apresenta o código antes e depois da aplicação da refatoração. O có-  digo antes da refatoração implementa uma classe anônima ActionListener. Após a refatoração,  o código apresentado possui a mesma funcionalidade, porém utiliza expressões lambda.</mecanica>
+        <createBy rdf:resource="#TeixeiraJúnior"/>
+        <hasDesvantagens>
+          <Desvantagens rdf:ID="AddComplexidadeLambda"/>
+        </hasDesvantagens>
+        <hasExemplo>
+          <Exemplo rdf:ID="Ex_Convert_Functional_Interface_Instance_to_Lambda_Expression">
+            <hasExemplo rdf:resource="#Convert_Functional_Interface_Instance_to_Lambda_Expression"/>
+            <antesRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >ActionListener al = new ActionListener() {  public void actionPerformed(ActionEvent e) {  System.out.println("Hello!");  }  }; </antesRefatoracao>
+            <isExemploOf rdf:resource="#Convert_Functional_Interface_Instance_to_Lambda_Expression"/>
+            <depoisRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >ActionListener al = e -&gt; System.out.println("Hello!");</depoisRefatoracao>
+          </Exemplo>
+        </hasExemplo>
+        <hasVantagens>
+          <Vantagens rdf:ID="Atualizacao">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Atualizar versão mais nova</rdfs:label>
+          </Vantagens>
+        </hasVantagens>
+        <hasObra rdf:resource="#CatalogoLambda"/>
+        <hasVantagens>
+          <Vantagens rdf:ID="ReduzLinhasCodigo">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Diminuir Linhas de Código</rdfs:label>
+          </Vantagens>
+        </hasVantagens>
+        <hasDominio rdf:resource="#Java"/>
+        <hasDominio rdf:resource="#POO"/>
+        <hasDominio rdf:resource="#Lambda"/>
+      </Refatoracao>
+    </hasRefatoracao>
+  </Categoria>
+  <Dominio rdf:ID="HTML">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >HTML</rdfs:label>
+  </Dominio>
+  <Exemplo rdf:ID="Ex_Replace_Data_Value_with_Object">
+    <antesRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0"&gt;
+      class Order(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          private String _customer;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public Order(String customer){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _customer = customer;    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public String getCustomer(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return _customer;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public String setCustomer(String arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _customer = arg;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</antesRefatoracao>
+    <depoisRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0"&gt;
+      class Customer(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          private Stirng _name;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          Customer(String name){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _name = name;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public String getName(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return _namer;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public String setName(String arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _name = arg;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      class Order(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          private Customer _customer;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public Order(String customer){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _customer = new Customer(customer);    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public String getCustomer(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return _customer.getName();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public String setCustomer(String arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _customer = new Customer(arg);    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</depoisRefatoracao>
+    <isExemploOf>
+      <Refatoracao rdf:ID="Replace_Data_Value_with_Object">
+        <hasVantagens rdf:resource="#MelhoraManutencao"/>
+        <hasVantagens>
+          <Vantagens rdf:ID="MelhoraReusabilidade">
+            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Melhoria na Reusabilidade</rdfs:label>
+          </Vantagens>
+        </hasVantagens>
+        <hasObra>
+          <Livro rdf:ID="RefactoringImprovingDesign">
+            <hasObra>
+              <Refatoracao rdf:ID="Move_Method">
+                <hasVantagens rdf:resource="#MelhoraManutencao"/>
+                <hasCategoria>
+                  <Categoria rdf:ID="DesignMovingFeaturesBetweenObjects">
+                    <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >&lt;p style="margin-top: 0"&gt;
+      &amp;#201; muito dificil conhecer todos os comportamentos das classes/objetos que 
+      estamos desenvolvendo. Essas refatora&amp;#231;&amp;#245;es auxiliam a mudar comportamento 
+      entre objetos, por exempo: Mover Atributos, Mover M&amp;#233;todos e Extrair 
+      Classe.
+    &lt;/p&gt;</descricao>
+                    <hasCategoria rdf:resource="#Move_Method"/>
+                    <hasRefatoracao rdf:resource="#Move_Method"/>
+                  </Categoria>
+                </hasCategoria>
+                <hasDominio>
+                  <Dominio rdf:ID="MelhoriaProjeto">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Melhoria Código Existente</rdfs:label>
+                  </Dominio>
+                </hasDominio>
+                <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >&lt;p style="margin-top: 0"&gt;
+      Um m&amp;#233;todo &amp;#233;, ou pode ser, mais requisitado em uma classe a qual ele n&amp;#227;o 
+      est&amp;#225; definido.
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Cria-se um novo m&amp;#233;todo equivalente na classe que ele &amp;#233; mais utilizado, 
+      remove-o desta classe e corrige suas chamadas.
+    &lt;/p&gt;</resumo>
+                <createBy>
+                  <Autor rdf:ID="Fowler">
+                    <isAutorOf rdf:resource="#RefactoringImprovingDesign"/>
+                    <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Martin Fowler</nome>
+                    <createBy rdf:resource="#Move_Method"/>
+                    <createBy rdf:resource="#Replace_Data_Value_with_Object"/>
+                    <createBy>
+                      <Refatoracao rdf:ID="Self_Encapsulate_Field">
+                        <hasExemplo>
+                          <Exemplo rdf:ID="Ex_Encapsulate_Field">
+                            <depoisRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >&lt;p style="margin-top: 0"&gt;
+      class IntRange(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          private int _low, _high;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          boolean includes(int arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return arg &amp;gt;= _low &amp;amp;&amp;amp; arg &amp;lt;= high;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          void setLow(int arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _low = arg;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          void setHigh(int arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              _high = arg;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          int getLow(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return _low;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          int getHigh(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return _high;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</depoisRefatoracao>
+                            <hasExemplo rdf:resource="#Self_Encapsulate_Field"/>
+                            <isExemploOf rdf:resource="#Self_Encapsulate_Field"/>
+                            <antesRefatoracao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >&lt;p style="margin-top: 0"&gt;
+      class IntRange(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          public int _low, _high;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          boolean includes(int arg){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              return arg &amp;gt;= _low &amp;amp;&amp;amp; arg &amp;lt;= high;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</antesRefatoracao>
+                          </Exemplo>
+                        </hasExemplo>
+                        <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >&lt;p style="margin-top: 0"&gt;
+      Voc&amp;#234; acessa diretamente os campos privados de uma classe.
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Criar getters e setters para o campo.
+    &lt;/p&gt;</resumo> <hasDesvantagens rdf:resource="#AddLinhasCodigo"/>
+                        <hasDominio rdf:resource="#Java"/>
+                        <hasCategoria>
+                          <Categoria rdf:ID="DesignOrganizingData">
+                            <hasRefatoracao rdf:resource="#Self_Encapsulate_Field"/>
+                            <hasRefatoracao rdf:resource="#Replace_Data_Value_with_Object"/>
+                            <hasCategoria rdf:resource="#Replace_Data_Value_with_Object"/>
+                            <hasCategoria rdf:resource="#Self_Encapsulate_Field"/>
+                            <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >&lt;p style="margin-top: 0"&gt;
+      Tecnicas de refatora&amp;#231;ao para auxiliar a manipula&amp;#231;&amp;#227;o dos dados, 
+      substituindo tipos primitivos por classes ricas em funcionalidade.
+    &lt;/p&gt;</descricao>
+                          </Categoria>
+                        </hasCategoria>
+                        <hasVantagens>
+                          <Vantagens rdf:ID="MelhorarEncapsulamento">
+                            <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >Encapsulamento</rdfs:label>
+                          </Vantagens>
+                        </hasVantagens>
+                        <hasDominio rdf:resource="#POO"/>
+                        <hasDominio rdf:resource="#MelhoriaProjeto"/>
+                        <hasObra rdf:resource="#RefactoringImprovingDesign"/>
+                        <createBy rdf:resource="#Fowler"/>
+                        <hasCatalogo>
+                          <Catalogo rdf:ID="Catalogo_Design_Code">
+                            <hasRefatoracao>
+                              <Refatoracao rdf:ID="Inline_Method">
+                                <hasDominio rdf:resource="#MelhoriaProjeto"/>
+                                <hasReverse>
+                                  <Refatoracao rdf:ID="Extract_Method">
+                                    <hasVantagens rdf:resource="#MelhoraReusabilidade"/>
+                                    <hasVantagens rdf:resource="#MelhorLegibilidade"/>
+                                    <hasDesvantagens>
+                                      <Desvantagens rdf:ID="AddMetodo"/>
+                                    </hasDesvantagens>
+                                    <hasExemplo>
+                                      <Exemplo rdf:ID="Ex_Extract_Method_Reassigning_a_Local_Variable">
+                                        <isExemploOf rdf:resource="#Extract_Method"/>
+                                        <antesRefatoracao rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >&lt;p style="margin-top: 0"&gt;
+      void printOwing(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Enumeration e = _orders.elements();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      double outstanding = 0.0;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      printBanner();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      // calculate outstanding
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      while(e.hasMoreElements()){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Order each = (Order) e.nextElement();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      outstanding += each.getAmount();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      printDetails(outstanding);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</antesRefatoracao>       <depoisRefatoracao rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >&lt;p style="margin-top: 0"&gt;
+      void printOwing(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      printBanner();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      &lt;b&gt;double outstanding = getOutstanding();&lt;/b&gt;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      printDetails(outstanding);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      double getOutstanding(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Enumeration e = _orders.elements();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      double outstanding = 0.0;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      // calculate outstanding
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      while(e.hasMoreElements()){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Order each = (Order) e.nextElement();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      outstanding += each.getAmount();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      return outstanding;
+    &lt;/p&gt;</depoisRefatoracao>    </Exemplo>
+                                    </hasExemplo>
+                                    <hasCatalogo rdf:resource="#Catalogo_Design_Code"/>
+                                    <hasObra rdf:resource="#RefactoringImprovingDesign"/>
+                                    <hasDominio rdf:resource="#POO"/>
+                                    <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >Voc&amp;#234; tem um c&amp;#243;digo fragmentado que pode ser agrupado em partes. Juntar os 
+    fragmentos a um m&amp;#233;todo e adiciona-lo ao c&amp;#243;digo com um nome enten&amp;#237;vel.</resumo>
+                                    <hasCategoria>
+                                      <Categoria rdf:ID="DesignComposingMethods">
+                                        <hasCategoria rdf:resource="#Inline_Method"/>
+                                        <hasCategoria rdf:resource="#Extract_Method"/>
+                                        <hasRefatoracao rdf:resource="#Inline_Method"/>
+                                        <hasRefatoracao rdf:resource="#Extract_Method"/>
+                                        <descricao rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >&lt;p style="margin-top: 0"&gt;
+      Refator&amp;#231;oes recomendadas para compor corretamente os metodos, alguns 
+      problemas que encontramos nos metodos sao: Metodos muito longos, metodos 
+      duplicados e nome dos parametros.
+    &lt;/p&gt;</descricao>            </Categoria>
+                                    </hasCategoria>
+                                    <hasDominio rdf:resource="#MelhoriaProjeto"/>
+                                    <hasDominio rdf:resource="#Java"/>
+                                    <hasVantagens rdf:resource="#MelhoraManutencao"/>
+                                    <hasExemplo>
+                                      <Exemplo rdf:ID="Ex_Extract_Method_No_Local_Variables">
+                                        <antesRefatoracao rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >&lt;p style="margin-top: 0"&gt;
+      void printOwing(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          Enumeration e = _orders.elements();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          double outstanding = 0.0;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          // print banner
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;*******************&amp;quot;);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;** Customer Owes **&amp;quot;);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;*******************&amp;quot;);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          // calculate outstanding
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          while(e.hasMoreElements()){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              Order each = (Order) e.nextElement();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              outstanding += each.getAmount();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          // print details
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;name: &amp;quot; + _name);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;amount: &amp;quot; + outstanding);    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</antesRefatoracao>       <isExemploOf rdf:resource="#Extract_Method"/>
+                                        <depoisRefatoracao rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >&lt;p style="margin-top: 0"&gt;
+      void printOwing(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          Enumeration e = _orders.elements();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          double outstanding = 0.0;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          &lt;b&gt;printBanner();&lt;/b&gt;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          // calculate outstanding
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          while(e.hasMoreElements()){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              Order each = (Order) e.nextElement();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+              outstanding += each.getAmount();
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          // print details
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;name: &amp;quot; + _name);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;amount: &amp;quot; + outstanding);    
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      void printBanner(){
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          // print banner
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;*******************&amp;quot;);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;** Customer Owes **&amp;quot;);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+          System.out.println(&amp;quot;*******************&amp;quot;);
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</depoisRefatoracao>    </Exemplo>
+                                    </hasExemplo>
+                                    <hasReverse rdf:resource="#Inline_Method"/>
+                                    <createBy rdf:resource="#Fowler"/>
+                                  </Refatoracao>
+                                </hasReverse>
+                                <hasDesvantagens rdf:resource="#PioraManutencao"/>
+                                <hasObra rdf:resource="#RefactoringImprovingDesign"/>
+                                <hasDominio rdf:resource="#POO"/>
+                                <hasDominio rdf:resource="#Java"/>
+                                <hasCatalogo rdf:resource="#Catalogo_Design_Code"/>
+                                <hasDesvantagens>
+                                  <Desvantagens rdf:ID="ReduzReusabilidade"/>
+                                </hasDesvantagens>
+                                <hasExemplo>
+                                  <Exemplo rdf:ID="Ex_Inline_Method">
+                                    <depoisRefatoracao rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >&lt;p style="margin-top: 0"&gt;
+      int getRating() {
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+        return (_numberOfLateDeliveries &amp;gt; 5) ? 2 : 1;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</depoisRefatoracao>  <hasExemplo rdf:resource="#Inline_Method"/>
+                                    <antesRefatoracao rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >&lt;p style="margin-top: 0"&gt;
+      int getRating() {
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+        return (moreThanFiveLateDeliveries()) ? 2 : 1;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      boolean moreThanFiveLateDeliveries() {
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+        return _numberOfLateDeliveries &amp;gt; 5;
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      }
+    &lt;/p&gt;</antesRefatoracao>   <isExemploOf rdf:resource="#Inline_Method"/>
+                                  </Exemplo>
+                                </hasExemplo>
+                                <createBy rdf:resource="#Fowler"/>
+                                <hasVantagens>
+                                  <Vantagens rdf:ID="RmMetodo">
+                                    <rdfs:label rdf:datatype=
+                                    "http://www.w3.org/2001/XMLSchema#string"
+                                    >Remover Método</rdfs:label>
+                                  </Vantagens>
+                                </hasVantagens>
+                                <hasCategoria rdf:resource="#DesignComposingMethods"/>
+                                <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >&lt;p style="margin-top: 0"&gt;
+      O corpo do m&amp;#233;todo &amp;#233; t&amp;#227;o claro quando seu nome.
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Inserir o corpo do m&amp;#233;todo dentro do(s) m&amp;#233;todo(s) que o utilizam e 
+      remover o m&amp;#233;todo.
+    &lt;/p&gt;</resumo>       </Refatoracao>
+                            </hasRefatoracao>
+                            <hasCatalogo rdf:resource="#Move_Method"/>
+                            <hasRefatoracao rdf:resource="#Extract_Method"/>
+                            <hasRefatoracao rdf:resource="#Self_Encapsulate_Field"/>
+                            <hasCatalogo rdf:resource="#Self_Encapsulate_Field"/>
+                            <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >&lt;p style="margin-top: 0"&gt;
+      Cat&amp;#225;logo de refatora&amp;#231;&amp;#245;es para melhorar um projeto existente.
+    &lt;/p&gt;</descricao>  <hasRefatoracao rdf:resource="#Replace_Data_Value_with_Object"/>
+                            <hasCatalogo rdf:resource="#Replace_Data_Value_with_Object"/>
+                            <hasRefatoracao rdf:resource="#Move_Method"/>
+                          </Catalogo>
+                        </hasCatalogo>
+                      </Refatoracao>
+                    </createBy>
+                    <createBy rdf:resource="#Inline_Method"/>
+                    <createBy rdf:resource="#Extract_Method"/>
+                  </Autor>
+                </createBy>
+                <hasCatalogo rdf:resource="#Catalogo_Design_Code"/>
+                <hasObra rdf:resource="#RefactoringImprovingDesign"/>
+                <hasDominio rdf:resource="#Java"/>
+                <hasVantagens rdf:resource="#MelhorLegibilidade"/>
+                <hasVantagens>
+                  <Vantagens rdf:ID="ReduzAcoplamento">
+                    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Reduzir Acoplamento</rdfs:label>
+                  </Vantagens>
+                </hasVantagens>
+                <hasDominio rdf:resource="#POO"/>
+              </Refatoracao>
+            </hasObra>
+            <hasObra rdf:resource="#Replace_Data_Value_with_Object"/>
+            <hasObra rdf:resource="#Self_Encapsulate_Field"/>
+            <hasObra rdf:resource="#Inline_Method"/>
+            <hasObra rdf:resource="#Extract_Method"/>
+            <hasCatalogo rdf:resource="#Catalogo_Design_Code"/>
+            <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Refactoring Improving the Design of Existing Code</titulo>
+            <hasAutor rdf:resource="#Fowler"/>
+          </Livro>
+        </hasObra>
+        <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >&lt;p style="margin-top: 0"&gt;
+      A classe cont&amp;#233;m um campo que possiu diferentes comportamentos.
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Criar uma nova classe e colocar o campo e seu(s) comportamento(s) nela. 
+      Por fim modificar o tipo do campo da classe pelo objeto criado.
+    &lt;/p&gt;</resumo>
+        <createBy rdf:resource="#Fowler"/>
+        <hasDominio rdf:resource="#Java"/>
+        <hasDominio rdf:resource="#MelhoriaProjeto"/>
+        <hasCategoria rdf:resource="#DesignOrganizingData"/>
+        <hasDesvantagens>
+          <Desvantagens rdf:ID="AddNroClasse"/>
+        </hasDesvantagens>
+        <hasCatalogo rdf:resource="#Catalogo_Design_Code"/>
+        <hasDominio rdf:resource="#POO"/>
+      </Refatoracao>
+    </isExemploOf>
+  </Exemplo>
+  <Autor rdf:ID="Kerievsky">
+    <nome rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >&lt;p style="margin-top: 0"&gt;
+      Joshua Kerievsky
+    &lt;/p&gt;</nome>
+    <isAutorOf>
+      <Livro rdf:ID="RefatoraçãoParaPadrões">
+        <hasAutor rdf:resource="#Kerievsky"/>
+        <hasObra>
+          <Refatoracao rdf:ID="Substituir_Construtores_por_Metodos_de_Criacao">
+            <hasDesvantagens rdf:resource="#AddLinhasCodigo"/>
+            <useOtherRefactorings rdf:resource="#Move_Method"/>
+            <hasObra rdf:resource="#RefatoraçãoParaPadrões"/>
+            <hasDominio>
+              <Dominio rdf:ID="PadroesProjeto">
+                <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Padrões de Projeto</rdfs:label>
+              </Dominio>
+            </hasDominio>
+            <hasCatalogo>
+              <Catalogo rdf:ID="Catalogo_Padrões">
+                <hasRefatoracao rdf:resource="#Substituir_Construtores_por_Metodos_de_Criacao"/>
+                <hasCatalogo rdf:resource="#Substituir_Construtores_por_Metodos_de_Criacao"/>
+                <hasCatalogo rdf:resource="#RefatoraçãoParaPadrões"/>
+                <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >&lt;p style="margin-top: 0"&gt;
+      Cat&amp;#225;logo para melhorar o projeto de c&amp;#243;digo existente com padr&amp;#245;es.
+    &lt;/p&gt;</descricao>
+              </Catalogo>
+            </hasCatalogo>
+            <useOtherRefactorings rdf:resource="#Extract_Method"/>
+            <useOtherRefactorings rdf:resource="#Inline_Method"/>
+            <hasDominio rdf:resource="#POO"/>
+            <hasVantagens rdf:resource="#MelhoraManutencao"/>
+            <createBy rdf:resource="#Kerievsky"/>
+            <hasVantagens rdf:resource="#MelhorLegibilidade"/>
+            <resumo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >&lt;p style="margin-top: 0"&gt;
+      Construtores em uma classe tornam mais dif&amp;#237;cil decidir qual construtor 
+      chamar durante o densenvolvimento.
+    &lt;/p&gt;
+    &lt;p style="margin-top: 0"&gt;
+      Substitua os contrutores por M&amp;#233;todos de Cria&amp;#231;&amp;#227;o que revelem a inten&amp;#231;&amp;#227;o 
+      do contrutor e que retornem inst&amp;#226;ncias da classe.
+    &lt;/p&gt;</resumo>
+            <hasCategoria>
+              <Categoria rdf:ID="PadroesCriacao">
+                <hasCategoria rdf:resource="#Substituir_Construtores_por_Metodos_de_Criacao"/>
+                <descricao rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >&lt;p style="margin-top: 0"&gt;
+      As refatora&amp;#231;oes desta categoria tem como alvo problemas de projeto, 
+      desde construtores para l&amp;#243;gica de constru&amp;#231;&amp;#227;o demasiadamente complexas 
+      at&amp;#233; Singletons desnecess&amp;#225;rios.
+    &lt;/p&gt;</descricao>
+                <hasRefatoracao rdf:resource="#Substituir_Construtores_por_Metodos_de_Criacao"/>
+              </Categoria>
+            </hasCategoria>
+          </Refatoracao>
+        </hasObra>
+        <titulo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >&lt;p style="margin-top: 0"&gt;
+      Refatora&amp;#231;&amp;#227;o para Padr&amp;#245;es
+    &lt;/p&gt;</titulo>
+        <hasCatalogo rdf:resource="#Catalogo_Padrões"/>
+      </Livro>
+    </isAutorOf>
+    <createBy rdf:resource="#Substituir_Construtores_por_Metodos_de_Criacao"/>
+  </Autor>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.8, Build 629)  http://protege.stanford.edu -->
